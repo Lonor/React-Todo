@@ -27,7 +27,6 @@ class App extends Component {
       }
       return current
     })
-    console.log(newTodo)
     this.setState({ todos: newTodo })
   }
 
