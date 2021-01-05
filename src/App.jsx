@@ -38,7 +38,17 @@ class App extends Component {
     this.setState({ todos: newTodo })
   }
 
+  countDone = () => {
+    const { todos } = this.state
+    let count = 0
+    for (let i = 0; i < todos.length; i++) {
+      count += todos[i].done
+    }
+    return count;
+  }
+
   render() {
+    const { todos } = this.state
     return (
       <div className="App">
         <Container fluid className='p-3'>
@@ -47,10 +57,10 @@ class App extends Component {
           </Row>
           <Row>
             <Col>
-              <List todos={this.state.todos} markAsDone={this.markAsDone} />
+              <List todos={todos} markAsDone={this.markAsDone} />
             </Col>
           </Row>
-          <Footer removeDone={this.removeDone} />
+          <Footer removeDone={this.removeDone} total={todos.length} countDone={this.countDone()} />
         </Container>
       </div>
     )
